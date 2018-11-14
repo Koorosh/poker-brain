@@ -18,12 +18,18 @@ RUN mkdir -p /tensorflow/models && \
 RUN git clone https://github.com/cocodataset/cocoapi.git && \
     cd cocoapi/PythonAPI && \
     make && \
+    python setup.py install && \
     cp -r pycocotools /tensorflow/models/research/
 
 WORKDIR /tensorflow/models/research
 
 RUN protoc object_detection/protos/*.proto --python_out=. && \
     export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+
+RUN python setup.py build && \
+    python setup.py install
+
+ENV PYTHONPATH="${PYTHONPATH}:/tensorflow/models/research:/tensorflow/models/research/slim"
 
 EXPOSE 8888
 EXPOSE 6006

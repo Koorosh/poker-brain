@@ -1,9 +1,19 @@
-version: '3'
+version: '3.5'
+networks:
+  default:
+    name: tf.local
+
 services:
   tensorflow:
+    container_name: 'tf'
+    hostname: 'train.tf.local'
     build: "."
     ports:
      - "8888:8888"
      - "6006:6006"
     volumes:
-     - ./datasets:/tensorflow/models/research/poker-brain/datasets
+     - ./data:/data
+     - ./images:/images
+     - ./models:/models
+     - ./zoo_models:/zoo_models
+     - ./sh:/sh
