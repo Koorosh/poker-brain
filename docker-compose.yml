@@ -5,8 +5,8 @@ networks:
 
 services:
   tensorflow:
-    container_name: 'tf'
-    hostname: 'train.tf.local'
+    container_name: tf
+    hostname: train.tf.local
     build: "."
     ports:
      - "8888:8888"
@@ -17,3 +17,14 @@ services:
      - ./models:/models
      - ./zoo_models:/zoo_models
      - ./sh:/sh
+  tf-serving:
+    container_name: tf-serving
+    image: tensorflow/serving
+    hostname: tf-serving.local
+    ports:
+      - 8501:8501
+      - 8500:8500
+    volumes:
+      - /models:/models/saved_model ???
+    environment: ???
+      - MODEL_NAME=saved_model
