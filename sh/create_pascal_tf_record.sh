@@ -30,9 +30,9 @@ python object_detection/model_main.py \
 
 # From tensorflow/models/research/
 INPUT_TYPE=image_tensor
-PIPELINE_CONFIG_PATH={path to pipeline config file}
-TRAINED_CKPT_PREFIX={path to model.ckpt}
-EXPORT_DIR={path to folder that will be used for export}
+PIPELINE_CONFIG_PATH=/models/2018-11-14_faster_rcnn_inception_v2_coco/faster_rcnn_inception_v2_coco.config
+TRAINED_CKPT_PREFIX=/models/2018-11-14_faster_rcnn_inception_v2_coco/model.ckpt-5275
+EXPORT_DIR=/models/2018-11-14_faster_rcnn_inception_v2_coco/1
 python object_detection/export_inference_graph.py \
     --input_type=${INPUT_TYPE} \
     --pipeline_config_path=${PIPELINE_CONFIG_PATH} \

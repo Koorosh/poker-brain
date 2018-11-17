@@ -11,7 +11,7 @@ def load_image_into_numpy_array(image_data):
       (im_height, im_width, 3)).astype(np.uint8)
 
 
-image = Image.open('/Users/avor/lab/poker-brain/data/test_images/test_image_1.jpg')
+image = Image.open('/Users/avor/projects/koorosh/poker-vision/images/POKER20181114/Poker2018/JPEGImages/table_001.jpg')
 
 image = load_image_into_numpy_array(image)
 
@@ -19,6 +19,6 @@ image = np.expand_dims(image, 0)
 
 data = json.dumps({"instances":  image.tolist()})
 
-json_response = requests.post("http://localhost:8501/v1/models/saved_model:predict", data=data)
+json_response = requests.post("http://localhost:8501/v1/models/2018-11-14_faster_rcnn_inception_v2_coco:predict", data=data)
 
 print(json_response.text)
