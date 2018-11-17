@@ -1,4 +1,4 @@
-# poker-brain
+# poker-vision
 
 ## Setup
 - Create empty directories in your project:
@@ -47,4 +47,19 @@ python object_detection/model_main.py \
     --num_train_steps=${NUM_TRAIN_STEPS} \
     --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES \
     --alsologtostderr
+```
+
+## Export frozen_model for inference
+
+```bash
+# From tensorflow/models/research/
+INPUT_TYPE=image_tensor
+PIPELINE_CONFIG_PATH={path to pipeline config file}
+TRAINED_CKPT_PREFIX={path to model.ckpt}
+EXPORT_DIR={path to folder that will be used for export}
+python object_detection/export_inference_graph.py \
+    --input_type=${INPUT_TYPE} \
+    --pipeline_config_path=${PIPELINE_CONFIG_PATH} \
+    --trained_checkpoint_prefix=${TRAINED_CKPT_PREFIX} \
+    --output_directory=${EXPORT_DIR}
 ```

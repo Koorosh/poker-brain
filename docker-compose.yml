@@ -25,6 +25,6 @@ services:
       - 8501:8501
       - 8500:8500
     volumes:
-      - /models:/models/saved_model ???
-    environment: ???
-      - MODEL_NAME=saved_model
+      - ./models:/models
+    env_file:
+    - tf-serving.env
